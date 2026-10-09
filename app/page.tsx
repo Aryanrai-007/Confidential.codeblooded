@@ -2,7 +2,12 @@
 
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import Lenis from 'lenis';
 import { useBeatStore } from '@/lib/beat-store';
+
+gsap.registerPlugin(useGSAP);
 
 const HeartScene = dynamic(() => import('@/components/heart-scene'), {
   ssr: false,
@@ -14,8 +19,6 @@ export default function Home() {
   const [soundOn, setSoundOn] = useState(false);
   const [reduced, setReduced] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const beat = useBeatStore((state) => state.beat);
-
   useEffect(() => {
     const alreadyEntered = sessionStorage.getItem('cb-entered') === '1';
     if (alreadyEntered) setEntered(true);
@@ -24,8 +27,30 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    document.documentElement.style.setProperty('--beat', String(beat));
-  }, [beat]);
+    const unsubscribe = useBeatStore.subscribe((state) => {
+      document.documentElement.style.setProperty('--beat', String(state.beat));
+    });
+    return unsubscribe;
+  }, []);
+
+  useEffect(() => {
+    const lenis = new Lenis({ autoRaf: false, smoothWheel: true, syncTouch: false });
+    const tick = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(tick);
+    gsap.ticker.lagSmoothing(0);
+    return () => {
+      gsap.ticker.remove(tick);
+      lenis.destroy();
+    };
+  }, []);
+
+  useGSAP(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.fromTo('.hero-copy > *, .art-index, .art-caption',
+      { y: 18, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, stagger: 0.08, ease: 'power2.out', delay: 0.15 }
+    );
+  }, []);
 
   function enterWorld() {
     sessionStorage.setItem('cb-entered', '1');
