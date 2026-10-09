@@ -1,6 +1,13 @@
 # Codeblooded — Checkpoint B Hero Spike
 
-Status: implementation draft on `checkpoint-b/hero-spike`. This is a limited hero spike, not a production release.
+Status: deployed implementation draft on `checkpoint-b/hero-spike`. This is a limited hero spike, not a production release.
+
+## Deployment / build evidence
+- Vercel project: `codeblooded-hero-spike`.
+- Live deployment: https://codeblooded-hero-spike.vercel.app
+- Deployment build: successful; Next.js 16.4.0; TypeScript check completed; route `/` prerendered as static content.
+- Vercel build logs reported compilation in 5.0s, TypeScript in 3.4s, and overall optimized build output in about 60s. These are build-environment timings, not browser performance measurements.
+- Browser screenshot capture was attempted from the available test environment but outbound navigation was blocked (`ERR_BLOCKED_BY_ADMINISTRATOR`). Therefore no honest desktop/mobile browser screenshots, recording, runtime-console audit, or real-device measurements can be attached from this environment. Do not treat the generated Checkpoint A concept boards as site screenshots.
 
 ## Included
 - Intro threshold with explicit Enter action and session-level repeat skip.
@@ -17,6 +24,7 @@ Status: implementation draft on `checkpoint-b/hero-spike`. This is a limited her
 - Loader does not yet report asset-by-asset progress. The scene uses procedural geometry and no external 3D assets; loader progress instrumentation is a follow-up before production intro.
 - No registration backend, auth, founder content, video embeds, WhatsApp invite, or domain configuration in this spike.
 - No claims of measured FPS, LCP, device performance, contrast pass, or accessibility certification.
+- Runtime behavior is not yet browser-verified because the browser test environment blocked navigation to the deployed URL.
 
 ## Package versions researched 2026-10-09
 - Next.js 16.4.0 — official Next.js App Router installation guide says Node.js >=20.9.
