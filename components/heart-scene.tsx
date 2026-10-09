@@ -47,13 +47,13 @@ function HeartMesh({ reducedMotion }: { reducedMotion: boolean }) {
     shape.bezierCurveTo(1.12, -0.12, 0.12, -0.72, 0, -0.95);
     return new THREE.ExtrudeGeometry(shape, { depth: 0.24, bevelEnabled: true, bevelSegments: 5, steps: 1, bevelSize: 0.075, bevelThickness: 0.08, curveSegments: 28 });
   }, []);
-  const beat = useBeatStore((state) => state.beat);
 
   useEffect(() => () => { geometry.dispose(); materialTexture.dispose(); }, [geometry, materialTexture]);
 
   useFrame((state) => {
     if (!mesh.current) return;
     const t = state.clock.elapsedTime;
+    const beat = useBeatStore.getState().beat;
     const envelope = reducedMotion ? 0 : Math.max(0, Math.sin(t * Math.PI * 2 * 1.1)) ** 18 * 0.055 + Math.max(0, Math.sin(t * Math.PI * 2 * 1.1 - 0.42)) ** 22 * 0.035;
     mesh.current.scale.setScalar(1 + envelope);
     mesh.current.rotation.y = reducedMotion ? -0.14 : -0.14 + Math.sin(t * 0.35) * 0.11;
@@ -88,7 +88,6 @@ function Scene({ onReady, reducedMotion }: Props) {
       <Float speed={reducedMotion ? 0 : 0.55} rotationIntensity={reducedMotion ? 0 : 0.08} floatIntensity={reducedMotion ? 0 : 0.13}>
         <HeartMesh reducedMotion={reducedMotion} />
       </Float>
-      <Environment preset="night" />
       <EffectComposer multisampling={0}>
         <Bloom intensity={0.62} luminanceThreshold={0.55} luminanceSmoothing={0.24} mipmapBlur />
         <Vignette eskil={false} offset={0.22} darkness={0.75} />
