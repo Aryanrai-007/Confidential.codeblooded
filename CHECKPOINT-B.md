@@ -4,9 +4,11 @@ Status: deployed implementation draft on `checkpoint-b/hero-spike`. This is a li
 
 ## Deployment / build evidence
 - Vercel project: `codeblooded-hero-spike`.
-- Live deployment: https://codeblooded-hero-spike.vercel.app
+- Latest successfully built code deployment (branch alias): https://codeblooded-hero-spike-git-37c53b-aryan-rais-projects-060f8c7e.vercel.app
+- The project also has a separate stable alias; until the newest branch commit finishes deploying, use the branch alias above for the tested source commit.
 - Deployment build: successful; Next.js 16.4.0; TypeScript check completed; route `/` prerendered as static content.
-- Vercel build logs reported compilation in 5.0s, TypeScript in 3.4s, and overall optimized build output in about 60s. These are build-environment timings, not browser performance measurements.
+- Vercel build logs reported compilation in 5.0s on the first build and 4.8s on the heartbeat-render optimization build; TypeScript took 3.4s on the first build. Optimized build output took about 60s initially and 32s on the optimization build. These are build-environment timings, not browser performance measurements.
+- npm install reported **5 high-severity audit findings** in the initial build. The dependency tree needs an audit and remediation before any production launch; no `npm audit fix` was applied blindly.
 - Browser screenshot capture was attempted from the available test environment but outbound navigation was blocked (`ERR_BLOCKED_BY_ADMINISTRATOR`). Therefore no honest desktop/mobile browser screenshots, recording, runtime-console audit, or real-device measurements can be attached from this environment. Do not treat the generated Checkpoint A concept boards as site screenshots.
 
 ## Included
