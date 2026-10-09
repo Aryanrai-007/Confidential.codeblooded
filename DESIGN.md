@@ -101,20 +101,15 @@ A curved tunnel should only appear after entry, as a spatial continuation of the
 **Selected: A — Built in blood. Proven in code.**
 
 Other options retained for reference:
-2. **Think sharp. Build ruthless. Ship real.**
-3. **We don't just write code. We put it to the test.**
-
-
-2. **Think sharp. Build ruthless. Ship real.**
-3. **We don't just write code. We put it to the test.**
+- **B — Think sharp. Build ruthless. Ship real.**
+- **C — We don't just write code. We put it to the test.**
 
 ### Manifesto
 **Selected: A — We build after the idea gets uncomfortable. We test what breaks. We ship what holds. Codeblooded is for people who want their work to stand up under pressure.**
 
 Other options retained for reference:
-
-2. **Less talk in the channel. More proof in the repo. We make things, break things, learn fast, and come back sharper.**
-3. **The work is the signal. Build it. Put it under pressure. Ship it where people can see.**
+- **B — Less talk in the channel. More proof in the repo. We make things, break things, learn fast, and come back sharper.**
+- **C — The work is the signal. Build it. Put it under pressure. Ship it where people can see.**
 
 No invented member counts, testimonials, founder biographies, or activity statistics. Founder/team/video content remains clearly marked as temporary in a single data file until real details are supplied. The separate hackathon business is out of scope and must not be mentioned.
 
